@@ -1,2 +1,5 @@
-package interfases;public interface Printable {
+package interfases;
+
+public interface Printable {
+    void print();
 }

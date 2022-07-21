@@ -1,18 +1,54 @@
 import interfases.Printable;
-import java.util.List;
 
-public class Books implements Printable {
-    private String BookName;
-    public Books(String name){
-        this.BookName = name;
+import java.util.Objects;
+
+public class Book implements Printable {
+    private String name;
+    public Book(String name){
+        this.name = name;
     }
-    public void print(){
-        System.out.println("book");
+
+    public String getName() {
+        return name;
     }
-    public static void printBooks(List<Printable> printable){
-        if (printable instanceof Books){
-            System.out.println(printable);
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public static void printBooks(Printable[] printables){
+        System.out.println("ONLY BOOKS HERE: ");
+        for(Printable printable:printables){
+            if(printable instanceof Book){
+                System.out.println(((Book) printable).getName());
+            }
         }
     }
 
+
+    @Override
+    public void print() {
+        System.out.println("this book is " + getName());
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(name, book.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
+
